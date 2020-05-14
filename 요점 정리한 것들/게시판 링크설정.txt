@@ -1,0 +1,11 @@
+1. 게시판 jsp 만들기
+
+include 폴더에 top-menu, bottom_menu를 나눠준다
+main에는 top,bottom을 import해준다
+
+topmenu링크설정
+1) 맨위 프로젝트명 누를 시 main view이동
+  top_menu view-> main controller -> main view
+
+2) top_menu들 누를 경우 해당 게시판 이동
+  top_menu view -> board controller -> board/main view
