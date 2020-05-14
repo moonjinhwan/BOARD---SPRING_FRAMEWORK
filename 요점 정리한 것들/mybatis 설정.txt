@@ -1,0 +1,14 @@
+1. Mybatis 설정
+
+mapper폴더하고 board_mapper.xml 생성
+
+ojdbc6은 라이브러리 설정이 안되기 때문에 직접 lib폴더에 넣어준다
+db.properties파일 생성- 디비정보를 설정
+servlet-context.xml에서 프로퍼티 파일을 사용할 수 있도록 한다
+dataSource설정
+mapper 경로 설정
+sqlSessionTemplate설정
+
+2. 디비에 추가한 테이블 빈 생성
+userBean
+BoardInfoBean 클래스 생성 - 디비 칼럼과 똑같이 만든다
