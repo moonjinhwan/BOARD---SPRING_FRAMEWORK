@@ -1,0 +1,19 @@
+1. pom.xml 세팅방법
+servlet-api
+jsp-api
+jstl
+springWebMVC
+
+2. web.xml세팅 방법
+모든 요청을 appServlet으로 넘긴다
+appServlet안의 dispatherServlet에서 요청 정보를 분석 후 컨트롤러 선택한다
+mvc 설정을 위한 xml파일을 지정 (servlet-context.xml)
+빈 정의할 xml 파일을 지정한다(root-context.xml)
+사용자 요청을 받아들여서 빈을 로딩한다(리스너 설정)
+필터설정(모든 요청에 대하여 encodingFilter를 거치게해서 utf-8로 설정)
+
+3. servlet_context.xml 설정
+스캔한 패키지 내부의 클래스중 controller 어노테이션을 가지고 있는 클래스를 로딩한다(annotation-driven)
+스캔할 빈들이 모여있는 패키지를 지정한다(component-scan)
+controller의 리턴값의 앞 뒤에 중복되는 경로를 붙여줌
+이미지,사운드,동영상,css등등 경로 세팅해준다
