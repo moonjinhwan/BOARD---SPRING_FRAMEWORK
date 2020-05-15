@@ -9,6 +9,6 @@ scan한다
 
 5. 인터섭터 설정한다
 servlet-context.xml에서 interceptor로 들어올 주소, 인터셉터의 경로 설정
- view ->interceptor->service->dao->mapper
-mappe)--(menuList)--> dao --(list)--> service---(list)--> 
-interceptor(request영역에 menuList 주입)
+view ->interceptor->service->dao->mapper
+ 
+mapper--(menuList)--> dao --(list)--> service---(list)-->interceptor(request영역에 menuList 주입)
