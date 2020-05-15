@@ -1,0 +1,14 @@
+1. contextPath를 알아내기
+c:url을 쓰면 세션 id가 붙기 때문에 c:set을 써서 절대경로를 구해야한다
+
+2. 상세 링크 설정
+main view(제목 클릭) -> main ctr -> read view
+main view(더보기 클릭) ->main ctr -> board/main view
+board/main view (제목 클릭) -> board ctr -> board/read view
+board/main view (글쓰기) -> board ctr -> board/write view
+board/read view(목록보기 클릭)->board ctr -> board/main view
+board/read view(수정하기 클릭)->board ctr->board/modify view
+board/read view(삭제 클릭)-> board ctr->board/delete view
+user/login view(로그인) -> main ctr -> main view
+user/login view(회원가입)->user controller -> user/join view
+top_menu view(정보수정) ->user controller-> user/modify view

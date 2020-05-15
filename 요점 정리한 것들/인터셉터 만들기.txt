@@ -1,0 +1,14 @@
+1. top_menu_mapper.xml 생성
+
+2. servlet-context.xml에서 모든 경로 mapper를 사용한다. 추가 설정이 없다
+
+3. TopMenuDao를 사용하기 때문에 어노테이션을 사용하기 위해 servet-context에서
+scan한다
+
+4. service도 똑같이 한다
+
+5. 인터섭터 설정한다
+servlet-context.xml에서 interceptor로 들어올 주소, 인터셉터의 경로 설정
+ view ->interceptor->service->dao->mapper
+mappe)--(menuList)--> dao --(list)--> service---(list)--> 
+interceptor(request영역에 menuList 주입)
