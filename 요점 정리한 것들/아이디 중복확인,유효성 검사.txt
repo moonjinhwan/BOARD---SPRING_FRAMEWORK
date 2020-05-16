@@ -1,0 +1,15 @@
+1. id중복 확인 처리
+user_id를 파라미터로 select할 시 null나오면 사용가능
+ajax통신을 통해 주소에 data를 붙인다
+
+주는과정
+join view 중복체크, ajax통신 url통해 id보내기---> RestApiController --->service
+->dao->mapper
+
+받아오는과정
+mapper -> dao -> service(여기서 true,false판단) -> RestApiController -> join view(히든값인 idExist에 t,f들어감, UserBean에 변수선언) 
+-> join_pro controller(@Valid에 들어감) -> @InitBinder -> binder.addValidator(userBeanValidator) method-> UserValidator validate method(에러 프로퍼티설정)
+-> join view
+
+2. 중복확인 하고 지우고 다시 쓰는 경우 중복확인이 되어있음. 이걸 방지방법
+input태크 클릭 시 무조건 idExist를 false처리
