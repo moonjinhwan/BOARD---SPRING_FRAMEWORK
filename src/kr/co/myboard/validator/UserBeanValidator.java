@@ -1,0 +1,25 @@
+package kr.co.myboard.validator;
+
+import org.springframework.validation.Errors;
+import org.springframework.validation.Validator;
+
+import kr.co.myboard.beans.UserBean;
+
+public class UserBeanValidator implements Validator{
+
+	@Override
+	public boolean supports(Class<?> clazz) {
+		// TODO Auto-generated method stub
+		return UserBean.class.isAssignableFrom(clazz);
+	}
+
+	@Override
+	public void validate(Object target, Errors errors) {
+		// TODO Auto-generated method stub
+		UserBean userBean = (UserBean)target;
+		if(userBean.getUser_pw().equals(userBean.getUser_pw2())){
+			errors.rejectValue("user_pw", "NotEquals");
+			errors.rejectValue("user_pw2", "NotEquals");
+		}
+	}
+}

@@ -5,12 +5,15 @@ import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.myboard.beans.UserBean;
+import kr.co.myboard.validator.UserBeanValidator;
 
 @Controller
 @RequestMapping("/user")
@@ -42,5 +45,11 @@ public class UserController {
 	@GetMapping("/logout")
 	public String logout() {
 		return "user/logout";
+	}
+	
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		UserBeanValidator validator = new UserBeanValidator();
+		binder.addValidators(validator);
 	}
 }

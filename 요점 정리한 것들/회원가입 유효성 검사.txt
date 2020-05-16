@@ -4,16 +4,17 @@ top_menu view -> coin controller -> join view
 UserBean의 정규식설정 @Size,@Pattern
 
 내가 기입한 form을 뷰에 전달하는 과정
-join view --(form객체)-->join_pro controller ----->join_success
+join view --(form객체)-->join_pro controller ----->join_success view
 
 2. 유효성 검사시 에러 멘트 커스텀하기
 error.properties 생성
 servlet-context에 error메시시 등록
 메시지 접근을 위한 접근자 등록
+join view ----> join_pro controller ---(hassErrors)->join view
 
 3. 비번 두개가 같은지 확인하는 유효성 검사하기
 UserBeanValidator클래스 생성
 UserController에 @InitBinder생성
 
-join view ------> join_pro controller -----> @InitBinder ---(form객체)--
---> UserBeanValidator---(error프로퍼티)---> join view
+join view ------> join_pro controller -----> @InitBinder initBinder 메서드 --->binder.addValidator 메서드
+---(userBean)---->UserBeanValidator class ---(equal pw,pw2, properties)---> join view

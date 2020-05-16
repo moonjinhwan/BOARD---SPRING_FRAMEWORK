@@ -55,4 +55,18 @@
  			<beans:bean class="kr.co.myboard.interceptor.TopMenuInterceptor"/>
  		</interceptor>
  	</interceptors>
+ 	
+ 	<!-- 메시지 프로퍼티 등록 -->
+ 	<beans:bean class='org.springframework.context.support.ReloadableResourceBundleMessageSource' id='messageSource'>
+ 		<beans:property name="basenames">
+			<beans:list>
+				<beans:value>/WEB-INF/properties/error_message</beans:value>
+			</beans:list>
+		</beans:property>
+ 	</beans:bean>
+ 	
+ 	<!-- 프로퍼티 접근자 등록 -->
+ 	<beans:bean class='org.springframework.context.support.MessageSourceAccessor'>
+		<beans:constructor-arg ref='messageSource'/>
+	</beans:bean>
 </beans:beans>
