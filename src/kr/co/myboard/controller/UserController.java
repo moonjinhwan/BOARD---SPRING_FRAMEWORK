@@ -1,9 +1,11 @@
 package kr.co.myboard.controller;
 
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -24,9 +26,21 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
+	@Resource(name = "loginUserBean")
+	@Lazy
+	private UserBean loginUserBean;
+	
 	@GetMapping("/login")
-	public String login() {
+	public String login(@ModelAttribute("tempLoginUserBean") UserBean tempLoginUserBean) {
 		return "user/login";
+	}
+	
+	@PostMapping("/login_pro")
+	public String login_pro(@Valid @ModelAttribute("tempLoginUserBean") UserBean tempLoginUserBean, BindingResult result) {
+		if(result.hasErrors()) {
+			return "user/login";
+		}
+		return "user/login_success";
 	}
 	
 	@GetMapping("/join")

@@ -24,4 +24,8 @@ public class UserService {
 	public void addUserInfo(UserBean joinUserBean) {
 		userDao.addUserInfo(joinUserBean);
 	}
+	
+	public UserBean getLoginUserInfo(UserBean loginBean) {
+		return userDao.getLoginUserInfo(loginBean);
+	}
 }

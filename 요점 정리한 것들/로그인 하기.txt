@@ -1,0 +1,17 @@
+1. 로그인 form의 변수 넘기기
+userbean에 로그인 여부 변수 선언
+root-context에 로그인 빈 생성, 세션 스코프에 넣는다
+login view ----(form)---> login_pro controller -----(form)---> login view
+
+2. 유효성검사를 하시오
+회원가입과 로그인 시 같은 UserBean을 사용한다. 그러므로 validator에서 userIdExist가 false면 에러가난다
+그러므로 빈 이름으로 validate method에서 분기한다
+login view -> login_pro cont-> @initBinder -> UserValidator.validate method---(빈 이름으로 분기)-->login view
+
+3. 로그인 성공 여부 확인
+mapper ---(idx,name)---> dao----(idx,name)--> service(로그인여부변수 true,false) ----> login_pro contrl 
+------> login_success,login_fail -----> login
+
+4. 로그인 실패시 jsp에서 로그인 실패 멘트 뜨게하기
+실패한경우
+login_fail(url에 fail=true넘김) ------> login_pro controller----(@RequestParam에서 fail변수 받음)-----> login view(c:if로 분기)

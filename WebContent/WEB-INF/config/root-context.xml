@@ -4,4 +4,7 @@
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans
 	   					   http://www.springframework.org/schema/beans/spring-beans.xsd">
 	   					   
+	   					   
+	<bean id="loginUserBean" scope="session" class="kr.co.myboard.beans.UserBean"/>   					   
+	   					   
 </beans>
