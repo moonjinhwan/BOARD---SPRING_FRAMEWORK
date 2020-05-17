@@ -1,0 +1,3 @@
+디비에 회원정보 저장하기
+join view----(joinUserBean)---> join_pro contrl ---(joinUserBean)--> service ---같음--> dao --->mapper
+mapper -> dao> service -> join_pro cntrll -> join_success view -> login view

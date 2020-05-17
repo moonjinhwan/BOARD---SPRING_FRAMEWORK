@@ -3,6 +3,7 @@ package kr.co.myboard.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -13,11 +14,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.myboard.beans.UserBean;
+import kr.co.myboard.service.UserService;
 import kr.co.myboard.validator.UserBeanValidator;
 
 @Controller
 @RequestMapping("/user")
 public class UserController {
+	
+	@Autowired
+	UserService userService;
 	
 	@GetMapping("/login")
 	public String login() {
@@ -34,6 +39,7 @@ public class UserController {
 		if(result.hasErrors()) {
 			return "user/join";
 		}
+		userService.addUserInfo(joinUserBean);
 		return "user/join_success";
 	}
 	
