@@ -24,9 +24,12 @@ public class UserBean {
 	private String user_pw2;
 	
 	private boolean userIdExist;
+	private boolean loginFlag;
+	
 	
 	public UserBean() {
 		userIdExist=false;
+		loginFlag=false;
 	}
 	
 	public String getUser_pw2() {
@@ -65,4 +68,12 @@ public class UserBean {
 	public void setUserIdExist(boolean userIdExist) {
 		this.userIdExist = userIdExist;
 	}
+	public boolean isLoginFlag() {
+		return loginFlag;
+	}
+
+	public void setLoginFlag(boolean loginFlag) {
+		this.loginFlag = loginFlag;
+	}
+
 }
