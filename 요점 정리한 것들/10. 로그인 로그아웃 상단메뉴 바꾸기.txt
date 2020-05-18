@@ -1,0 +1,6 @@
+로그인 시 top_menu view 바꿔주기
+모든 view -> interceptor --(request영역에 loginUserBean저장 )--> top_menu view (userLogin변수에 따라 분기)
+
+로그아웃 시  top_menu view 바꿔주기
+logout controller (loginUserBena.loginFlag = false) --------> top_menu
+

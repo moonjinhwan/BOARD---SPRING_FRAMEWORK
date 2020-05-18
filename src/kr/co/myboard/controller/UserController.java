@@ -74,6 +74,7 @@ public class UserController {
 	
 	@GetMapping("/logout")
 	public String logout() {
+		loginUserBean.setLoginFlag(false);
 		return "user/logout";
 	}
 	
