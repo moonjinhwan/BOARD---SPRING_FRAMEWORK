@@ -21,8 +21,9 @@ public class CheckLoginInterceptor implements HandlerInterceptor{
 		if(loginUserBean.isLoginFlag()==false) {
 			String contextPath = request.getContextPath();
 			response.sendRedirect(contextPath+"/user/not_login");
+			return false;//여기서 끝나게 된다
 		}
-		return false;
+		return true;//다음 단계로 이동한다
 	}
 	
 }

@@ -40,4 +40,15 @@ public class UserService {
 			loginUserBean.setLoginFlag(true);
 		}
 	}
+	public void getModifyInfo(UserBean modifyUserBean) {//주소값을 전달한다
+		UserBean tempBean = userDao.getModifyInfo(loginUserBean.getUser_idx());
+		modifyUserBean.setUser_id(tempBean.getUser_id());
+		modifyUserBean.setUser_name(tempBean.getUser_name());
+		modifyUserBean.setUser_idx(loginUserBean.getUser_idx());
+	}
+	
+	public void updateUserInfo(UserBean modifyUserBean) {
+		modifyUserBean.setUser_idx(loginUserBean.getUser_idx());
+		userDao.updateUserInfo(modifyUserBean);
+	}
 }

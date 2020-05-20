@@ -1,0 +1,14 @@
+1. 정보수정 클릭 시 modify view에 아이디, 이름값 세팅되게 하기
+modify view 만들기
+
+modify view -> modify controller -> service ----(loginUserBean.idx)----> dao (idx)-> mapper
+
+mapper ----(UserBean)---> dao -> service(넘겨받은modifyUserBean주소값으로 id,name세팅 ) ----> 
+modify controller --->modify view 
+
+2. pw, pw2를 유효성검사를 하시오
+input 태그에서 disabled는 서버로 값이 전달되지 않는다. readonly로 바꿔야한다
+modify view -> modify_pro controller -> @InitBinder -> UserValidator.validate("modifyUserBean객체이름에 따라 분기")->modify_success view
+
+3. 회원정보를 수정하시오
+modify view -> controller ---(modifyBean)---> dao --(modifyBean)--> mapper(update)

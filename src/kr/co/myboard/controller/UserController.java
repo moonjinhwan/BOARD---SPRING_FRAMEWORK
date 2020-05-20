@@ -3,6 +3,7 @@ package kr.co.myboard.controller;
 
 import javax.annotation.Resource;
 import javax.validation.Valid;
+import javax.xml.ws.BindingType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
@@ -68,8 +69,18 @@ public class UserController {
 	}
 	
 	@GetMapping("/modify")
-	public String modify() {
+	public String modify(@ModelAttribute("modifyUserBean") UserBean modifyUserBean) {
+		userService.getModifyInfo(modifyUserBean);
 		return "user/modify";
+	}
+	
+	@PostMapping("/modify_pro")
+	public String modify_pro(@Valid @ModelAttribute("modifyUserBean") UserBean modifyUserBean, BindingResult result) {
+		if(result.hasErrors()) {
+			return "user/modify";
+		}
+		userService.updateUserInfo(modifyUserBean);
+		return "user/modify_success";
 	}
 	
 	@GetMapping("/logout")

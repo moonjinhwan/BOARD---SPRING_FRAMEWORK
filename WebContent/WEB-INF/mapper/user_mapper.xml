@@ -19,4 +19,16 @@
 		from user_table
 		where user_id=#{user_id} and user_pw=#{user_pw}
 	</select>
+	
+	<select id="getModifyInfo" parameterType="java.lang.Integer" resultType="kr.co.myboard.beans.UserBean">
+		select user_name, user_id
+		from user_table
+		where user_idx = #{user_idx}
+	</select>
+	
+	<update id="updateUserInfo" parameterType="kr.co.myboard.beans.UserBean">
+		update user_table
+		set user_pw = #{user_pw}
+		where user_idx = #{user_idx}
+	</update>
 </mapper>

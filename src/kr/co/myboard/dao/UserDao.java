@@ -23,4 +23,12 @@ public class UserDao {
 	public UserBean getLoginUserInfo(UserBean loginBean) {
 		return sqlSessionTemplate.selectOne("user.getLoginUserInfo" ,loginBean);
 	}
+	
+	public UserBean getModifyInfo(int user_idx) {
+		return sqlSessionTemplate.selectOne("user.getModifyInfo", user_idx);
+	}
+	
+	public void updateUserInfo(UserBean modifyUserBean) {
+		sqlSessionTemplate.update("user.updateUserInfo", modifyUserBean);
+	}
 }
