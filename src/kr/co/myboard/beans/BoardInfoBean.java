@@ -1,5 +1,7 @@
 package kr.co.myboard.beans;
 
+import javax.validation.constraints.NotBlank;
+
 public class BoardInfoBean {
 	private int board_info_idx; //게시판 유영별 번호
 	private String board_info_name;//게시판 이름 - 유머, 자유 등등
