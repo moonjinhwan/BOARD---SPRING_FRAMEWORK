@@ -1,0 +1,9 @@
+1. 게시판 index를 글쓰기 페이지로 전달
+top_menu view (borad idx전달)> /board/main controller(board_idx model에 저장) > board/main view(board_idx전달) 
+> /board/write controller > board/write view
+
+2. 폼 커스텀 태그 작성
+
+3. 글쓰기 유효성 검사
+ContentBean에 제목, 내용에 @NotBlank설정
+write view > write_pro controller > write_success or write view
