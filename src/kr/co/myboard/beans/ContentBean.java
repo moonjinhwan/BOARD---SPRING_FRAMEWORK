@@ -18,6 +18,8 @@ public class ContentBean {
 	private int content_board_idx;//게시물 번호
 	private String content_date;//제목
 	private MultipartFile upload_file;//파일 데이터
+	private String content_writer_name;//작성자 이름
+	
 	public int getContent_idx() {
 		return content_idx;
 	}
@@ -65,5 +67,11 @@ public class ContentBean {
 	}
 	public void setUpload_file(MultipartFile upload_file) {
 		this.upload_file = upload_file;
+	}
+	public String getContent_writer_name() {
+		return content_writer_name;
+	}
+	public void setContent_writer_name(String content_writer_name) {
+		this.content_writer_name = content_writer_name;
 	}
 }

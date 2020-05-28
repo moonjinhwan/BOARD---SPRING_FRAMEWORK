@@ -1,5 +1,7 @@
 package kr.co.myboard.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +22,16 @@ import kr.co.myboard.service.BoardService;
 public class BoardController {
 	@Autowired
 	private BoardService boardService;
+
 	@GetMapping("/main")
-	public String main(@RequestParam("board_info_idx") String board_info_idx, Model model) {
+	public String main(@RequestParam("board_info_idx") int board_info_idx, Model model) {
 		model.addAttribute("board_info_idx", board_info_idx);
+		
+		String boardName = boardService.getBoardName(board_info_idx);
+		model.addAttribute("boardName", boardName);
+		
+		List<ContentBean> contentList=boardService.getContentList(board_info_idx);
+		model.addAttribute("contentList",contentList);
 		return "board/main";
 	}
 	

@@ -1,0 +1,7 @@
+1. 게시판 제목을 board/main으로 불러오기
+board/main cont (board_idx전달) > service > dao > mapper(board_idx로 board_name리턴)
+> dao > service > cont > board/main view
+
+2. 게시글 정보를 불러온다
+top_menu view (board_info_idx) > board/main cont(board_info_idx전달) > service > dao > mapper(board_info_idx를 매개변수로 contentBean리턴)
+> dao > service > board/main cont(model에 contentBean List 저장) > board/main view

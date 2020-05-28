@@ -1,6 +1,7 @@
 package kr.co.myboard.service;
 
 import java.io.File;
+import java.util.List;
 
 import javax.annotation.Resource;
 
@@ -44,5 +45,11 @@ public class BoardService {
 		}
 		writeContentBean.setContent_writer_idx(loginUserBean.getUser_idx());
 		boardDao.addContentInfo(writeContentBean);
+	}
+	public String getBoardName(int board_info_idx) {
+		return boardDao.getBoardName(board_info_idx);
+	}
+	public List<ContentBean> getContentList(int board_info_idx){
+		return boardDao.getContentList(board_info_idx);
 	}
 }
