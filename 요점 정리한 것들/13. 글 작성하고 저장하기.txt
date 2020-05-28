@@ -1,0 +1,25 @@
+1. 폼 전달 (파일데이터 때문에 그냥 전달 안됨)
+servlet-context.xml에 StandardServletMultipartResolver 빈 정의 
+web.xml에 appServlet태그에서 파일사이즈, 폼데이터+파일사이즈 용량, 임계값 설정
+ContentBean에 파일데이터를 받을 변수 생성
+enctype를 form에서 설정해야지 파일 데이터, 문자열을 전달하는게 가능하다
+
+2. 파일 데이터 전달
+파일 데이터를 전달할 때 web에 필터 설정을 해줘야 서버로 전달된다
+
+3. 파일 데이터 저장하기 위한 경로 설정
+데이터 저장 경로를 프로퍼티로 만든다
+boardService에서 경로를 가져오기 위해 @PropertySource와 @Value를 사용한다
+
+4. 파일 이름 생성하기 위한 메서드
+현재시간과 파일이름을 더해서 새로운 파일이름을 생성하고 transferTo를 사용해서 경로에 저장
+파일 이름 리턴
+
+5. 넘어온 파일데이터 존재 여부 확인 매서드
+form으로 부터 넘어온 데이터가 0보다 크면 이름생성 메서드 호출
+작성자 index를 빈에 저장
+
+6. 글 정보 저장
+mapper (content_file에 null을 허용하도록 설정,jdbcType=VARCHAR)
+write view > write_pro cont > service > dao > mapper(insert) >
+dao > service > write_pro cont > write_success view

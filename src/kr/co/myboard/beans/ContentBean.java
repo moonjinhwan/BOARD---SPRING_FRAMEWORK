@@ -2,6 +2,8 @@ package kr.co.myboard.beans;
 
 import javax.validation.constraints.NotBlank;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class ContentBean {
 	private int content_idx;
 	
@@ -12,9 +14,10 @@ public class ContentBean {
 	private String content_text;
 	
 	private String content_file;
-	private int content_writer_idx;
-	private int content_board_idx;
-	private String content_date;
+	private int content_writer_idx;//작성자 번호
+	private int content_board_idx;//게시물 번호
+	private String content_date;//제목
+	private MultipartFile upload_file;//파일 데이터
 	public int getContent_idx() {
 		return content_idx;
 	}
@@ -56,5 +59,11 @@ public class ContentBean {
 	}
 	public void setContent_date(String content_date) {
 		this.content_date = content_date;
+	}
+	public MultipartFile getUpload_file() {
+		return upload_file;
+	}
+	public void setUpload_file(MultipartFile upload_file) {
+		this.upload_file = upload_file;
 	}
 }

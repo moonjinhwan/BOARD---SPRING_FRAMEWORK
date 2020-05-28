@@ -1,6 +1,5 @@
 package kr.co.myboard.beans;
 
-import javax.validation.constraints.NotBlank;
 
 public class BoardInfoBean {
 	private int board_info_idx; //게시판 유영별 번호

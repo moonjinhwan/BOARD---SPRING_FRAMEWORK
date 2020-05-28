@@ -3,6 +3,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="root" value="${pageContext.request.contextPath }/"/>
 <script>
-	alert("글쓰기 성공")
-	loaction.href="${root}board/main"
+	alert("저장 완료")
+	location.href="${root}board/read"
 </script>
