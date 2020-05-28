@@ -22,4 +22,7 @@ public class BoardDao {
 	public List<ContentBean> getContentList(int board_info_idx){
 		return sqlSession.selectList("board.getContentList", board_info_idx);
 	}
+	public ContentBean getContentInfo(int content_idx) {
+		return sqlSession.selectOne("board.getContentInfo", content_idx);
+	}
 }

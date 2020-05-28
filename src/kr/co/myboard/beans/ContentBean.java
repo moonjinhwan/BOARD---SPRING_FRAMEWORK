@@ -13,10 +13,10 @@ public class ContentBean {
 	@NotBlank
 	private String content_text;
 	
-	private String content_file;
+	private String content_file;//파일 이름
 	private int content_writer_idx;//작성자 번호
-	private int content_board_idx;//게시물 번호
-	private String content_date;//제목
+	private int content_board_idx;//게시판 번호
+	private String content_date;//날짜
 	private MultipartFile upload_file;//파일 데이터
 	private String content_writer_name;//작성자 이름
 	
