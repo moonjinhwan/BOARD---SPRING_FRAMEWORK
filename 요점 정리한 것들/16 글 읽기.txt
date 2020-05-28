@@ -1,0 +1,10 @@
+1. 글 읽기 페이지
+/board/main view (content_idx를 제목링크로 전달) > board/read controller(@RequestParam으로 content_idx받기) > service >
+dao > mapper(매개변수content_idx, 리턴contentBean) > dao > service > /board/read view
+
+2. 글 쓴거 바로 보기
+insert문에서 <selectKey>사용
+dao( contentBean매개변수) > <selectKey>의 값을 매개변수에 넣음 > 그걸 <insert>의 매개변수로 쓴다
+
+write_success view (content_idx, board_info_idx전달) > read contorller > service > dao
+> mapper (contentBean) > dao > service > contorller > read view
