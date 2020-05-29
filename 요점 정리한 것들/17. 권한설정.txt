@@ -1,0 +1,13 @@
+로그인 한 사람, 글작성자 구분
+1. 수정페이지에 context_idx전달
+read cont (content_idx전달) > read view (/baord/modify?content_idx) > modify cont
+
+2. 작성자, 로그인 한 사람 동일여부에 따라 글수정,삭제 버튼 생김
+getContentInfo에 content_writer_idx까지 select해온다
+read view에서 loginUserBean과 contentBean사용하여 c:if로 분기
+
+3. 수정,삭제를 url로 들어가지 못하게 권한설정
+CheckWriterInterceptor클래스 생성
+preHandel > boardService.getContentInfo > dao > mapper 를 통해 객체를 받아온다
+loginUserBean과 ContentBean으로 로그인한 사람, 작성자 구분하여 
+틀리면 not_writer controller로 보냄
