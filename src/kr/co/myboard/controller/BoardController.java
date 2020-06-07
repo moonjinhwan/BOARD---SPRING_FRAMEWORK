@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.myboard.beans.ContentBean;
 import kr.co.myboard.beans.UserBean;
+import kr.co.myboard.dao.BoardDao;
 import kr.co.myboard.service.BoardService;
 
 @Controller
@@ -90,12 +91,13 @@ public class BoardController {
 		if(result.hasErrors()) {
 			return "/board/modify";
 		}
-		System.out.println(modifyContentBean.getContent_file());
 		boardService.modifyContentInfo(modifyContentBean);
 		return "board/modify_success";
 	}
 	@GetMapping("/delete")
-	public String delete() {
+	public String delete(@RequestParam("content_idx") int content_idx, @RequestParam("board_info_idx") int board_info_idx,Model model) {
+		boardService.deleteContentBean(content_idx);
+		model.addAttribute("board_info_idx", board_info_idx);
 		return "board/delete";
 	}
 	
