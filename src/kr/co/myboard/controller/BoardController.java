@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -72,10 +73,27 @@ public class BoardController {
 	}
 		
 	@GetMapping("/modify")
-	public String modify() {
+	public String modify(@RequestParam("content_idx") int content_idx, @RequestParam("board_info_idx") int board_info_idx, @ModelAttribute("modifyContentBean") ContentBean modifyContentBean) {
+		ContentBean tempContentBean = boardService.getContentInfo(content_idx);
+		modifyContentBean.setContent_writer_name(tempContentBean.getContent_writer_name());
+		modifyContentBean.setContent_date(tempContentBean.getContent_date());
+		modifyContentBean.setContent_subject(tempContentBean.getContent_subject());
+		modifyContentBean.setContent_text(tempContentBean.getContent_text());
+		modifyContentBean.setContent_file(tempContentBean.getContent_file());
+		modifyContentBean.setContent_board_idx(board_info_idx);
+		modifyContentBean.setContent_idx(content_idx);
 		return "board/modify";
 	}
 	
+	@PostMapping("/modify_pro")
+	public String modify_pro(@Valid @ModelAttribute("modifyContentBean") ContentBean modifyContentBean, BindingResult result) {
+		if(result.hasErrors()) {
+			return "/board/modify";
+		}
+		System.out.println(modifyContentBean.getContent_file());
+		boardService.modifyContentInfo(modifyContentBean);
+		return "board/modify_success";
+	}
 	@GetMapping("/delete")
 	public String delete() {
 		return "board/delete";

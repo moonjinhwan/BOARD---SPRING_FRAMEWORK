@@ -1,0 +1,14 @@
+	1. 수정 페이지 작성, 취소 과정
+	read view (수정하기 버튼) > modify cont (@RequestParam 게시판번호, 컨탠츠번호) > 
+	modify view (취소 버튼) > read cont > read view
+	2. 수정 과정
+	read view (수정하기 버튼) > modify cont (@RequestParam 게시판번호, 컨탠츠번호) > 
+	modify view(수정 하기) > modify_pro cont (@ModelAttribute(modifyBean)) > read cont > read view
+	3. 수정 페이지 띄우기
+	read view > modify view가 될때 content내용을 띄워 줘야한다
+	/modify cont service.getContentInfo(content_idx) > modifyContentBean에 set > @ModelAttribute("modifyContentBean")과 연동 > modify view
+	4. 수정 후 이미지 전달에 실패하는 이유
+	@ModelAttribute에 content_file에 관한 변수가 없어서.
+	form:hidden path='content_file'을 설정해야 controller로 수정파일 이름을 같이 보낸다
+	5. mapper이용하여 수정
+	modify_pro cont : modifyContentInfo(modifyContent)호출> boardService : modifyContentInfo에서 upload_file존재 파악 후 저장 > dao > mapper : update > dao > service> controller > modify success view
