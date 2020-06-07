@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.myboard.beans.ContentBean;
+import kr.co.myboard.beans.PageBean;
 import kr.co.myboard.beans.UserBean;
 import kr.co.myboard.dao.BoardDao;
 import kr.co.myboard.service.BoardService;
@@ -33,14 +34,17 @@ public class BoardController {
 	private UserBean loginUserBean;
 	
 	@GetMapping("/main")
-	public String main(@RequestParam("board_info_idx") int board_info_idx, Model model) {
+	public String main(@RequestParam("board_info_idx") int board_info_idx, Model model, @RequestParam(value="page", defaultValue = "1") int page) {
 		model.addAttribute("board_info_idx", board_info_idx);
 		
 		String boardName = boardService.getBoardName(board_info_idx);
 		model.addAttribute("boardName", boardName);
 		
-		List<ContentBean> contentList=boardService.getContentList(board_info_idx);
+		List<ContentBean> contentList=boardService.getContentList(board_info_idx, page);
 		model.addAttribute("contentList",contentList);
+		
+		PageBean pageBean = boardService.getContentCnt(board_info_idx, page);
+		model.addAttribute("pageBean", pageBean);
 		return "board/main";
 	}
 	

@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Lazy;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.myboard.beans.ContentBean;
+import kr.co.myboard.beans.PageBean;
 import kr.co.myboard.beans.UserBean;
 import kr.co.myboard.dao.BoardDao;
 
@@ -20,6 +22,12 @@ import kr.co.myboard.dao.BoardDao;
 public class BoardService {
 	@Value("${path.upload}")
 	private String path_upload;
+	
+	@Value("${page.listcnt}")
+	private int page_listcnt;
+	
+	@Value("${page.paginationcnt}")
+	private int page_paginationcnt;
 	
 	@Resource(name = "loginUserBean")
 	@Lazy
@@ -49,8 +57,10 @@ public class BoardService {
 	public String getBoardName(int board_info_idx) {
 		return boardDao.getBoardName(board_info_idx);
 	}
-	public List<ContentBean> getContentList(int board_info_idx){
-		return boardDao.getContentList(board_info_idx);
+	public List<ContentBean> getContentList(int board_info_idx, int page){
+		int start = (page-1)*page_listcnt;
+		RowBounds rowbounds=new RowBounds(start, page_listcnt);
+		return boardDao.getContentList(board_info_idx, rowbounds);
 	}
 	public ContentBean getContentInfo(int content_idx) {
 		return boardDao.getContentInfo(content_idx);
@@ -67,5 +77,10 @@ public class BoardService {
 	}
 	public void deleteContentBean(int content_idx) {
 		boardDao.deleteContentInfo(content_idx);
+	}
+	public PageBean getContentCnt(int content_board_idx, int page) {
+		int contentCnt=boardDao.getContentCnt(content_board_idx);
+		PageBean pageBean=new PageBean(contentCnt, page, page_listcnt, page_paginationcnt);
+		return pageBean;
 	}
 }
